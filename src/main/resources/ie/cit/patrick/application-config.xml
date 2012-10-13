@@ -7,6 +7,10 @@
 	<bean id="comedianDao" class="ie.cit.patrick.dao.impl.JdbcComedianDao">
 		<constructor-arg ref="dataSource"/>
 	</bean>
+	
+	<bean id="jokeDao" class="ie.cit.patrick.dao.impl.JdbcJokeDao">
+		<constructor-arg ref="dataSource"/>
+	</bean>
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 	    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>

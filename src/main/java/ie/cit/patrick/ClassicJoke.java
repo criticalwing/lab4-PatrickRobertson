@@ -3,15 +3,31 @@ package ie.cit.patrick;
 public class ClassicJoke implements Joke{
 	
 	private String question, punchline;
+	private int id;
 	
 	public ClassicJoke(){
 		
 	}
 	
+	public ClassicJoke(String question, String punchline, int id) {
+		super();
+		this.question = question;
+		this.punchline = punchline;
+		this.id = id;
+	}
+
 	public ClassicJoke(String question, String punchline) {
 		super();
 		this.question = question;
 		this.punchline = punchline;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getQuestion() {

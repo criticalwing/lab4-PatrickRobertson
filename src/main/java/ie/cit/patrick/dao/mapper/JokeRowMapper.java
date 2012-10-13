@@ -9,7 +9,7 @@ public class JokeRowMapper implements RowMapper<ClassicJoke>{
 
 	@Override
 	public ClassicJoke mapRow(ResultSet rs, int i) throws SQLException {
-		ClassicJoke joke = new ClassicJoke(rs.getString("Question"), rs.getString("Punch Line"));
+		ClassicJoke joke = new ClassicJoke(rs.getString("Question"), rs.getString("Punch Line"), rs.getInt("id"));
 		return joke;
 	}
 

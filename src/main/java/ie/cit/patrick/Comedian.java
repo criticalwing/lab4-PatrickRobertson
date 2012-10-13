@@ -11,6 +11,10 @@ public class Comedian extends Person implements Performer{
 		super();
 	}
 
+	public Comedian(int age, String name, String city, String country) {
+		super(age, name, city, country);
+	}
+	
 	public Comedian(int id, int age, String name, String city, String country) {
 		super(id, age, name, city, country);
 	}
@@ -20,6 +24,7 @@ public class Comedian extends Person implements Performer{
 		this.jokes = jokes;	
 		
 	}
+	
 
 	public List<Joke> getJokes() {
 		return jokes;

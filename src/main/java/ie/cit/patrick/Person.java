@@ -8,6 +8,14 @@ public class Person {
 	public Person(){
 	}
 	
+	public Person(int age, String name, String city, String country) {
+
+		this.age = age;
+		this.name = name;
+		this.city = city;
+		this.country = country;
+	}
+	
 	public Person(int id, int age, String name, String city, String country) {
 		this.id = id;
 		this.age = age;
@@ -15,6 +23,8 @@ public class Person {
 		this.city = city;
 		this.country = country;
 	}
+	
+	
 
 	public int getId() {
 		return id;

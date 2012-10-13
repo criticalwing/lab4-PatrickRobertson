@@ -1,14 +1,13 @@
 package ie.cit.patrick.dao.impl;
 
 import java.util.List;
-
-import ie.cit.patrick.ClassicJoke;
 import ie.cit.patrick.Comedian;
 import ie.cit.patrick.dao.ComedianDao;
 import ie.cit.patrick.dao.mapper.ComedianRowMapper;
-import ie.cit.patrick.dao.mapper.JokeRowMapper;
 
 import javax.sql.DataSource;
+
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -23,18 +22,33 @@ public class JdbcComedianDao implements ComedianDao{
 
 	@Override
 	public void update(Comedian comedian) {
-		// TODO Auto-generated method stub
-		
+		try{
+		jdbcTemplate.update("UPDATE comedians " +
+				"SET Name = ?, City = ?, Country = ?, Age = ? " +
+				"WHERE id = ?", comedian.getName(), comedian.getCity(), comedian.getCountry(), comedian.getAge(), comedian.getId());
+		} catch (DataAccessException e){
+			System.out.println(e.getMessage());
+		}
 	}
 
 	@Override
 	public void add(Comedian comedian) {
-
+		try{
+		jdbcTemplate.update("INSERT INTO comedians (`id`, `Name`, `City`, `Country`, `Age`) VALUES (NULL, ?, ?, ?, ?)",
+				comedian.getName(), comedian.getCity(), comedian.getCountry(), comedian.getAge());
+		} catch (DataAccessException e){
+			System.out.println(e.getMessage());
+		}
+		
 	}
 
 	@Override
-	public void delete(int id) {
-		// TODO Auto-generated method stub
+	public void deleteByName(String name) {
+		try{
+		jdbcTemplate.update("DELETE FROM comedians WHERE Name = ?", name);
+		} catch (DataAccessException e){
+			System.out.println(e.getMessage());
+		}
 		
 	}
 
@@ -63,28 +77,4 @@ public class JdbcComedianDao implements ComedianDao{
 
 	}
 	
-	public List<ClassicJoke> findByComedian(String name){
-
-		try {
-					return jdbcTemplate.query("SELECT * FROM jokes WHERE comedian = ?", new JokeRowMapper(), name);
-			}
-		catch (EmptyResultDataAccessException e) {
-					return null;
-			}		
-
-		
-	}
-	
-	public ClassicJoke selectRandomJoke(){
-		
-		try {
-			List<ClassicJoke> jokes = jdbcTemplate.query("SELECT * FROM jokes", new JokeRowMapper());
-			double y = Math.random()*jokes.size();
-			return jokes.get((int) y);
-	}
-		catch (EmptyResultDataAccessException e) {
-			return null;
-	}	
-}
-
 }

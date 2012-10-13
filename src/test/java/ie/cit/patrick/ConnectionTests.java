@@ -37,6 +37,7 @@ public class ConnectionTests {
 
 	}
 	
+	@Test
 	public void testDatabaseConnection(){
 		
 		ApplicationContext context;
@@ -47,12 +48,13 @@ public class ConnectionTests {
 		
 		Comedian bob = comedianDao.getByName("Bob Hope");
 		
-		String expected = "Hi, I'm Bob Hope and I'm from Los Angeles USA! Would you believe I'm only 120 years old!";
+		String expected = "Hi, I'm Bob Hope and I'm from Los Angeles USA! Would you believe I'm only 120 years old?";
 		
 		String actual = "Hi, I'm " + bob.getName() + " and I'm from " + bob.getCity() + 
 				" " + bob.getCountry() + "! Would you believe I'm only " + bob.getAge() + " years old?";
 		
 		assertEquals(expected, actual);
+		
 		
 	}
 	
